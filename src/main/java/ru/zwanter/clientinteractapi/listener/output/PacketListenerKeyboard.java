@@ -1,13 +1,13 @@
-package ru.zwanter.clientinteract.listener.output;
+package ru.zwanter.clientinteractapi.listener.output;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;
-import ru.zwanter.clientinteract.ClientInteractAPI;
-import ru.zwanter.clientinteract.data.PacketUtils;
-import ru.zwanter.clientinteract.data.packet.InputPacketType;
-import ru.zwanter.clientinteract.data.screen.Screen;
-import ru.zwanter.clientinteract.listener.event.PressKeyboardEvent;
+import ru.zwanter.clientinteractapi.ClientInteractAPI;
+import ru.zwanter.clientinteractapi.data.PacketUtils;
+import ru.zwanter.clientinteractapi.data.packet.InputPacketType;
+import ru.zwanter.clientinteractapi.data.screen.Screen;
+import ru.zwanter.clientinteractapi.listener.event.PressKeyboardEvent;
 
 public class PacketListenerKeyboard implements PluginMessageListener {
 

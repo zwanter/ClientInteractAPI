@@ -1,4 +1,4 @@
-package ru.zwanter.clientinteract.listener.input;
+package ru.zwanter.clientinteractapi.listener.input;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -9,10 +9,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_20_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;
-import ru.zwanter.clientinteract.ClientInteractAPI;
-import ru.zwanter.clientinteract.data.RegisterKeys;
-import ru.zwanter.clientinteract.data.packet.InputPacketType;
-import ru.zwanter.clientinteract.listener.event.ClientInteractAPIInitEvent;
+import ru.zwanter.clientinteractapi.ClientInteractAPI;
+import ru.zwanter.clientinteractapi.data.RegisterKeys;
+import ru.zwanter.clientinteractapi.data.packet.InputPacketType;
+import ru.zwanter.clientinteractapi.listener.event.JoinModifiedPlayerEvent;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -69,10 +69,14 @@ public class ModInstalledPacketListener implements PluginMessageListener {
                     InputPacketType.INSTALLED_PLUGIN_PACKET.getPacketName()),
                     new PacketDataSerializer(byteBuf));
 
-            Bukkit.getPluginManager().callEvent(new ClientInteractAPIInitEvent(player));
+            JoinModifiedPlayerEvent joinModifiedPlayerEvent = new JoinModifiedPlayerEvent(player);
 
-            CraftPlayer craftPlayer = (CraftPlayer) player;
-            craftPlayer.getHandle().c.a(packet);
+            Bukkit.getPluginManager().callEvent(joinModifiedPlayerEvent);
+
+            if (joinModifiedPlayerEvent.isCancelled()) {
+                CraftPlayer craftPlayer = (CraftPlayer) player;
+                craftPlayer.getHandle().c.a(packet);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

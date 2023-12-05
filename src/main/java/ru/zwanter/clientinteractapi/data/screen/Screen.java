@@ -1,4 +1,4 @@
-package ru.zwanter.clientinteract.data.screen;
+package ru.zwanter.clientinteractapi.data.screen;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

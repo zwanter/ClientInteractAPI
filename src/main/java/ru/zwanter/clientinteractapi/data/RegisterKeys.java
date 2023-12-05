@@ -1,4 +1,4 @@
-package ru.zwanter.clientinteract.data;
+package ru.zwanter.clientinteractapi.data;
 
 import lombok.Getter;
 

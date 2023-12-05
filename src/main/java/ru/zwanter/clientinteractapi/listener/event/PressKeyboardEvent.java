@@ -1,10 +1,10 @@
-package ru.zwanter.clientinteract.listener.event;
+package ru.zwanter.clientinteractapi.listener.event;
 
 import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
-import ru.zwanter.clientinteract.data.screen.Screen;
+import ru.zwanter.clientinteractapi.data.screen.Screen;
 
 @Getter
 public class PressKeyboardEvent extends SendKeyEvent {

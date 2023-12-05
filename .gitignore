@@ -1,6 +1,5 @@
 # Project exclude paths
 /target/
-/ClientInteract.iml
-/KeyInputApi.iml
 /.paper-nms/
 /.idea/
+/ClientInteractAPI.iml
