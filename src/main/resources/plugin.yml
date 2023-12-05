@@ -1,0 +1,7 @@
+name: ClientInteractAPI
+version: '${project.version}'
+main: ru.zwanter.clientinteract.ClientInteractAPI
+api-version: '1.20'
+authors: [zwanter]
+website: quidstudio.ru
+depend: [ ProtocolLib ]
