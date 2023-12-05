@@ -55,11 +55,4 @@ public final class ClientInteractAPI extends JavaPlugin implements Listener {
             llamaSpit.addPassenger(player);
         }
     }
-
-    @EventHandler
-    public void onMouse(PressMouseEvent event) {
-        if (4 == event.getKey()) {
-            event.getPlayer().sendMessage("Нажата клавиша 4 на мышке");
-        }
-    }
 }
