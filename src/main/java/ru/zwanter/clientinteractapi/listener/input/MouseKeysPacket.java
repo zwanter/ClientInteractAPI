@@ -8,31 +8,19 @@ import net.minecraft.resources.MinecraftKey;
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_20_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.messaging.PluginMessageListener;
 import ru.zwanter.clientinteractapi.ClientInteractAPI;
 import ru.zwanter.clientinteractapi.data.RegisterKeys;
 import ru.zwanter.clientinteractapi.data.packet.InputPacketType;
-import ru.zwanter.clientinteractapi.listener.event.JoinModifiedPlayerEvent;
+import ru.zwanter.clientinteractapi.listener.event.ModPacketEvent;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-
-public class ModInstalledPacketListener implements PluginMessageListener {
-
-    public static void init(ClientInteractAPI clientInteractAPI) {
-        clientInteractAPI.getServer().getMessenger().registerIncomingPluginChannel(clientInteractAPI, channelId, new ModInstalledPacketListener());
-    }
-
-    private static final String channelId = ClientInteractAPI.getMOD_ID() + ":" +  InputPacketType.MOD_INSTALLED_PACKET.getPacketName();
-    private static final String packetID = ClientInteractAPI.getMOD_ID() + ":" + InputPacketType.INSTALLED_PLUGIN_PACKET.getPacketName();
-
-    @Override
-    public void onPluginMessageReceived(String channel, Player player, byte[] message) {
-        if (!(channel.equals(channelId))) return;
-        sendCustomPayloadPacket(player, RegisterKeys.getRegisterKeys());
+public class MouseKeysPacket {
+    public static void sendPacket(Player player) {
+        sendCustomPayloadPacket(player, RegisterKeys.getRegisterKeysMouse());
     }
 
 
@@ -66,10 +54,10 @@ public class ModInstalledPacketListener implements PluginMessageListener {
 
             PacketPlayOutCustomPayload packet = new PacketPlayOutCustomPayload(new MinecraftKey(
                     ClientInteractAPI.getMOD_ID(),
-                    InputPacketType.INSTALLED_PLUGIN_PACKET.getPacketName()),
+                    InputPacketType.MOUSE_KEYS_PACKET.getPacketName()),
                     new PacketDataSerializer(byteBuf));
 
-            JoinModifiedPlayerEvent joinModifiedPlayerEvent = new JoinModifiedPlayerEvent(player);
+            ModPacketEvent joinModifiedPlayerEvent = new ModPacketEvent(player);
 
             Bukkit.getPluginManager().callEvent(joinModifiedPlayerEvent);
 
@@ -82,4 +70,3 @@ public class ModInstalledPacketListener implements PluginMessageListener {
         }
     }
 }
-

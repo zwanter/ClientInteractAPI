@@ -7,7 +7,7 @@ import ru.zwanter.clientinteractapi.ClientInteractAPI;
 import ru.zwanter.clientinteractapi.data.PacketUtils;
 import ru.zwanter.clientinteractapi.data.packet.InputPacketType;
 import ru.zwanter.clientinteractapi.data.screen.Screen;
-import ru.zwanter.clientinteractapi.listener.event.PressKeyboardEvent;
+import ru.zwanter.clientinteractapi.listener.event.KeyboardEvent;
 
 public class PacketListenerKeyboard implements PluginMessageListener {
 
@@ -20,10 +20,11 @@ public class PacketListenerKeyboard implements PluginMessageListener {
     @Override
     public void onPluginMessageReceived(String channel, Player player, byte[] message) {
         if (!(channel.equals(channelId))) return;
+
         int keyCode = PacketUtils.getIntFromByteArray(message, 1);
         int modeCode = PacketUtils.getIntFromByteArray(message, 5);
-        int scrennCode = PacketUtils.getIntFromByteArray(message, 9);
+        int screenCode = PacketUtils.getIntFromByteArray(message, 9);
 
-        Bukkit.getPluginManager().callEvent(new PressKeyboardEvent(player, keyCode, modeCode, Screen.fromString(scrennCode)));
+        Bukkit.getPluginManager().callEvent(new KeyboardEvent(player, keyCode, modeCode, Screen.fromInt(screenCode)));
     }
 }

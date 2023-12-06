@@ -7,7 +7,7 @@ import ru.zwanter.clientinteractapi.ClientInteractAPI;
 import ru.zwanter.clientinteractapi.data.PacketUtils;
 import ru.zwanter.clientinteractapi.data.packet.InputPacketType;
 import ru.zwanter.clientinteractapi.data.screen.Screen;
-import ru.zwanter.clientinteractapi.listener.event.PressMouseEvent;
+import ru.zwanter.clientinteractapi.listener.event.MouseButtonEvent;
 
 public class PacketListenerMouse implements PluginMessageListener {
     public static void init(ClientInteractAPI clientInteractAPI) {
@@ -19,9 +19,11 @@ public class PacketListenerMouse implements PluginMessageListener {
     @Override
     public void onPluginMessageReceived(String channel, Player player, byte[] message) {
         if (!(channel.equals(channelId))) return;
-        int keyCode = PacketUtils.getIntFromByteArray(message, 1);
-        int scrennCode = PacketUtils.getIntFromByteArray(message, 5);
 
-        Bukkit.getPluginManager().callEvent(new PressMouseEvent(player, keyCode, Screen.fromString(scrennCode)));
+        int keyCode = PacketUtils.getIntFromByteArray(message, 1);
+        int modeCode = PacketUtils.getIntFromByteArray(message, 5);
+        int screenCode = PacketUtils.getIntFromByteArray(message, 9);
+
+        Bukkit.getPluginManager().callEvent(new MouseButtonEvent(player, keyCode, modeCode, Screen.fromInt(screenCode)));
     }
 }

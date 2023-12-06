@@ -7,12 +7,12 @@ import org.jetbrains.annotations.NotNull;
 import ru.zwanter.clientinteractapi.data.screen.Screen;
 
 @Getter
-public class PressMouseEvent extends SendKeyEvent {
+public class MouseButtonEvent extends SendKeyEvent {
 
     private static final HandlerList HANDLERS = new HandlerList();
 
-    public PressMouseEvent(@NotNull Player who, int key, Screen screen) {
-        super(who, key, screen);
+    public MouseButtonEvent(@NotNull Player who, int key, int mods, Screen screen) {
+        super(who, key, mods, screen);
     }
 
     @Override

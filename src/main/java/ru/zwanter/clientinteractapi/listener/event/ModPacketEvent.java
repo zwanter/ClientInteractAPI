@@ -7,13 +7,13 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
 import org.jetbrains.annotations.NotNull;
 @Getter
-public class JoinModifiedPlayerEvent extends PlayerEvent implements Cancellable {
+public class ModPacketEvent extends PlayerEvent implements Cancellable {
 
     private static final HandlerList HANDLERS = new HandlerList();
 
     private boolean cancelled = true;
 
-    public JoinModifiedPlayerEvent(@NotNull Player who) {
+    public ModPacketEvent(@NotNull Player who) {
         super(who);
     }
 
