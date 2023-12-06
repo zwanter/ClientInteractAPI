@@ -20,6 +20,18 @@
 </dependency>
 ```
 
+## Plugin:
+### plugin.yml:
+```yml
+name: YourNamePlugin
+version: 'your_version'
+main: your.package.YourMain
+api-version: 'your-version'
+authors: [your]
+depend:
+  - ClientInteractAPI
+```
+
 ## Example:
 ### Key registration:
 #### Registration of keys is necessary in order for the mod to register clicks on them:
