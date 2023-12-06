@@ -19,7 +19,6 @@
     <scope>provided</scope>
 </dependency>
 ```
-
 ## Plugin:
 ### plugin.yml:
 ```yml
