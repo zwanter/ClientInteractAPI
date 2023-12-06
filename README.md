@@ -15,7 +15,7 @@
 <dependency>
     <groupId>ru.zwanter</groupId>
     <artifactId>ClientInteractAPI</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <scope>provided</scope>
 </dependency>
 ```
