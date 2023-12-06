@@ -21,7 +21,6 @@
 ```
 
 ## Example:
-
 ### Key registration:
 #### Registration of keys is necessary in order for the mod to register clicks on them:
 ```java
@@ -70,7 +69,6 @@ public class YourListener implements Listener {
 }
 ```
 ### Mouse press tracking:
-
 ```java
 public class YourListener implements Listener {
     @EventHandler
