@@ -38,9 +38,7 @@ public final class YourMainClass extends JavaPlugin {
 ##
 ## Events:
 ### Tracking the player's entry with the mod:
-
 ```java
-
 public class YourListener implements Listener {
     @EventHandler
     public void onJoin(ModPacketEvent event) {
