@@ -24,8 +24,8 @@ import java.util.List;
 
 public class ModInstalledPacketListener implements PluginMessageListener {
 
-    public static void init(ClientInteractAPI clientInteractAPI) {
-        clientInteractAPI.getServer().getMessenger().registerIncomingPluginChannel(clientInteractAPI, channelId, new ModInstalledPacketListener());
+    public static void init(ClientInteractAPI plugin) {
+        plugin.getServer().getMessenger().registerIncomingPluginChannel(plugin, channelId, new ModInstalledPacketListener());
     }
 
     private static final String channelId = ClientInteractAPI.getMOD_ID() + ":" +  InputPacketType.MOD_INSTALLED_PACKET.getPacketName();

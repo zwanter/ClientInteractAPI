@@ -10,8 +10,8 @@ import ru.zwanter.clientinteractapi.data.screen.Screen;
 import ru.zwanter.clientinteractapi.listener.event.MouseButtonEvent;
 
 public class PacketListenerMouse implements PluginMessageListener {
-    public static void init(ClientInteractAPI clientInteractAPI) {
-        clientInteractAPI.getServer().getMessenger().registerIncomingPluginChannel(clientInteractAPI, channelId, new PacketListenerMouse());
+    public static void init(ClientInteractAPI plugin) {
+        plugin.getServer().getMessenger().registerIncomingPluginChannel(plugin, channelId, new PacketListenerMouse());
     }
 
     private static final String channelId = ClientInteractAPI.getMOD_ID() + ":" + InputPacketType.MODE_MOUSE_INPUT_PACKET.getPacketName();

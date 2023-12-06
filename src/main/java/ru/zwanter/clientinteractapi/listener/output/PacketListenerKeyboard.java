@@ -11,8 +11,8 @@ import ru.zwanter.clientinteractapi.listener.event.KeyboardEvent;
 
 public class PacketListenerKeyboard implements PluginMessageListener {
 
-    public static void init(ClientInteractAPI clientInteractAPI) {
-        clientInteractAPI.getServer().getMessenger().registerIncomingPluginChannel(clientInteractAPI, channelId, new PacketListenerKeyboard());
+    public static void init(ClientInteractAPI plugin) {
+        plugin.getServer().getMessenger().registerIncomingPluginChannel(plugin, channelId, new PacketListenerKeyboard());
     }
 
     private static final String channelId = ClientInteractAPI.getMOD_ID() + ":" + InputPacketType.KEYBOARD_INPUT_PACKET.getPacketName();

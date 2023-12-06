@@ -1,6 +1,16 @@
 # ClientInteractAPI:
+<style>
+    .image:hover {
+        transform: scale(1.5);
+        transition: transform 1.0s ease-in-out;
+    }
 
-![alt text](https://raw.githubusercontent.com/zwanter/ClientInteractAPI/master/images/image1.png?raw=true)
+    .image:not(:hover) {
+        transform: scale(1);
+        transition: transform 1.0s ease-in-out;
+    }
+</style>
+<img class="image" src="https://raw.githubusercontent.com/zwanter/ClientInteractAPI/master/images/image1.png?raw=true">
 
 ## Maven:
 ### Repository:
@@ -90,3 +100,10 @@ public class YourListener implements Listener {
     }
 }
 ```
+
+## Функции
+
+| Функция | Описание |
+|---|---|
+| `calculate_area()` | Расчет площади круга по его радиусу |
+| `calculate_circumference()` | Расчет окружности круга по его радиусу |
