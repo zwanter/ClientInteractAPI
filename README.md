@@ -1,16 +1,20 @@
 # ClientInteractAPI:
+
+
+<div>
 <style>
     .image:hover {
-        transform: scale(1.5);
+        transform: scale(1.3);
         transition: transform 1.0s ease-in-out;
     }
-
     .image:not(:hover) {
         transform: scale(1);
         transition: transform 1.0s ease-in-out;
     }
 </style>
 <img class="image" src="https://raw.githubusercontent.com/zwanter/ClientInteractAPI/master/images/image1.png?raw=true">
+</div>
+
 
 ## Maven:
 ### Repository:
