@@ -10,7 +10,9 @@ import org.bukkit.craftbukkit.v1_20_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 import ru.zwanter.clientinteractapi.ClientInteractAPI;
+import ru.zwanter.clientinteractapi.data.PacketUtils;
 import ru.zwanter.clientinteractapi.data.packet.InputPacketType;
+import ru.zwanter.clientinteractapi.data.version.MinecraftVersion;
 import ru.zwanter.clientinteractapi.listener.event.ModPacketEvent;
 import ru.zwanter.clientinteractapi.listener.input.KeyboardKeysPacket;
 import ru.zwanter.clientinteractapi.listener.input.MouseKeysPacket;
@@ -33,11 +35,14 @@ public class ModInstalledPacketListener implements PluginMessageListener {
     @Override
     public void onPluginMessageReceived(String channel, Player player, byte[] message) {
         if (!(channel.equals(channelId))) return;
-        sendCustomPayloadPacket(player, new ArrayList<>());
+
+        int versionCode = PacketUtils.getIntFromByteArray(message, 1);
+
+        sendCustomPayloadPacket(player, new ArrayList<>(), versionCode);
     }
 
 
-    private static void sendCustomPayloadPacket(Player player, List<Integer> list) {
+    private static void sendCustomPayloadPacket(Player player, List<Integer> list, int version) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
 
@@ -46,7 +51,7 @@ public class ModInstalledPacketListener implements PluginMessageListener {
                 dataOutputStream.writeInt(number);
             }
 
-            sendBytePacket(player, byteArrayOutputStream.toByteArray());
+            sendBytePacket(player, byteArrayOutputStream.toByteArray(), version);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -59,7 +64,7 @@ public class ModInstalledPacketListener implements PluginMessageListener {
         }
     }
 
-    private static void sendBytePacket(Player player, byte[] message) {
+    private static void sendBytePacket(Player player, byte[] message, int version) {
         try {
             byte[] newMessage = new byte[message.length + 1];
             System.arraycopy(message, 0, newMessage, 1, message.length);
@@ -70,7 +75,7 @@ public class ModInstalledPacketListener implements PluginMessageListener {
                     InputPacketType.INSTALLED_PLUGIN_PACKET.getPacketName()),
                     new PacketDataSerializer(byteBuf));
 
-            ModPacketEvent joinModifiedPlayerEvent = new ModPacketEvent(player);
+            ModPacketEvent joinModifiedPlayerEvent = new ModPacketEvent(player, MinecraftVersion.getMinecraftVersion(version));
 
             Bukkit.getPluginManager().callEvent(joinModifiedPlayerEvent);
 

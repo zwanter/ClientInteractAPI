@@ -2,6 +2,7 @@ package ru.zwanter.clientinteractapi;
 
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
+import ru.zwanter.clientinteractapi.listener.event.ModPacketEvent;
 import ru.zwanter.clientinteractapi.listener.output.ModInstalledPacketListener;
 import ru.zwanter.clientinteractapi.listener.output.PacketListenerKeyboard;
 import ru.zwanter.clientinteractapi.listener.output.PacketListenerMouse;
@@ -17,6 +18,8 @@ public final class ClientInteractAPI extends JavaPlugin {
     public void onEnable() {
 
         instance = this;
+
+        ModPacketEvent.init(this);
 
         PacketListenerKeyboard.init(this);
 

@@ -15,7 +15,7 @@
 <dependency>
     <groupId>ru.zwanter</groupId>
     <artifactId>ClientInteractAPI</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
     <scope>provided</scope>
 </dependency>
 ```
@@ -61,10 +61,16 @@ public class YourListener implements Listener {
 }
 ```
 ### Key press tracking:
+
 ```java
+
 public class YourListener implements Listener {
     @EventHandler
     public void onKeyboard(KeyboardEvent event) {
+        //We check whether the player is in the inventory
+        if (event.getScreen() == Screen.CONTAINER_SCREEN) {
+           return;
+        }
         if (event.getKey() == KeyEvent.VK_J) {
             //We display a message about the pressed key, receiving the contents of the key using KeyEvent.getKeyText(key)
             event.getPlayer().sendMessage("You pressed key: " + KeyEvent.getKeyText(event.getKey()));
@@ -80,12 +86,23 @@ public class YourListener implements Listener {
 }
 ```
 ### Mouse press tracking:
+
 ```java
+
+import ru.zwanter.clientinteractapi.data.version.MinecraftVersion;
+
 public class YourListener implements Listener {
     @EventHandler
     public void onMouse(MouseButtonEvent event) {
-        if (event.getKey() == MouseKeys.BUTTON4 || event.getKey() == MouseKeys.BUTTON5) {
-            event.getPlayer().sendMessage("You pressed mouse key: " + MouseKeys.getButtonText(event.getKey()));
+        if (event.getVersion() == MinecraftVersion.FABRIC) {
+            if (event.getKey() == MouseKeys.BUTTON5) {
+                event.getPlayer().sendMessage("You pressed mouse key: " + MouseKeys.getButtonText(event.getKey()))
+            }
+        }
+        if (event.getVersion() == MinecraftVersion.FORGE) {
+            if (event.getKey() == MouseKeys.BUTTON4) {
+                event.getPlayer().sendMessage("You pressed mouse key: " + MouseKeys.getButtonText(event.getKey()));
+            }
         }
     }
 }

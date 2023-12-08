@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import ru.zwanter.clientinteractapi.data.screen.Screen;
+import ru.zwanter.clientinteractapi.data.version.MinecraftVersion;
 
 @Getter
 public class MouseButtonEvent extends SendKeyEvent {
@@ -12,7 +13,7 @@ public class MouseButtonEvent extends SendKeyEvent {
     private static final HandlerList HANDLERS = new HandlerList();
 
     public MouseButtonEvent(@NotNull Player who, int key, int mods, Screen screen) {
-        super(who, key, mods, screen);
+        super(who, key, mods, screen, MinecraftVersion.getPlayerVersion(who));
     }
 
     @Override

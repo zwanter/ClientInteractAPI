@@ -17,6 +17,6 @@ public enum Screen {
     public static Screen fromInt(int modifier) {
         for (Screen screen : values())
             if (screen.getValue() == modifier) return screen;
-        return Screen.ERROR_SCREEN;
+        return ERROR_SCREEN;
     }
 }

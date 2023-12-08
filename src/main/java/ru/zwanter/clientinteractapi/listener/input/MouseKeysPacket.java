@@ -5,13 +5,11 @@ import io.netty.buffer.Unpooled;
 import net.minecraft.network.PacketDataSerializer;
 import net.minecraft.network.protocol.game.PacketPlayOutCustomPayload;
 import net.minecraft.resources.MinecraftKey;
-import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_20_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import ru.zwanter.clientinteractapi.ClientInteractAPI;
 import ru.zwanter.clientinteractapi.data.RegisterKeys;
 import ru.zwanter.clientinteractapi.data.packet.InputPacketType;
-import ru.zwanter.clientinteractapi.listener.event.ModPacketEvent;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -21,6 +19,10 @@ import java.util.List;
 public class MouseKeysPacket {
     public static void sendPacket(Player player) {
         sendCustomPayloadPacket(player, RegisterKeys.getRegisterKeysMouse());
+    }
+
+    public static void sendPacket(Player player, List<Integer> ints) {
+        sendCustomPayloadPacket(player, ints);
     }
 
 
@@ -57,14 +59,9 @@ public class MouseKeysPacket {
                     InputPacketType.MOUSE_KEYS_PACKET.getPacketName()),
                     new PacketDataSerializer(byteBuf));
 
-            ModPacketEvent joinModifiedPlayerEvent = new ModPacketEvent(player);
+            CraftPlayer craftPlayer = (CraftPlayer) player;
+            craftPlayer.getHandle().c.a(packet);
 
-            Bukkit.getPluginManager().callEvent(joinModifiedPlayerEvent);
-
-            if (joinModifiedPlayerEvent.isCancelled()) {
-                CraftPlayer craftPlayer = (CraftPlayer) player;
-                craftPlayer.getHandle().c.a(packet);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
