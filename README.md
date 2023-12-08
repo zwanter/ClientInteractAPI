@@ -1,6 +1,6 @@
 # ClientInteractAPI:
 
-<img src="https://github.com/zwanter/ClientInteractAPI/blob/master/images/image1.png?raw=true">
+<img src="https://github.com/zwanter/ClientInteractAPI/blob/master/images/image1.png?raw=true" alt="ClientInteractAPI">
 
 ## Maven:
 ### Repository:
@@ -63,7 +63,6 @@ public class YourListener implements Listener {
 ### Key press tracking:
 
 ```java
-
 public class YourListener implements Listener {
     @EventHandler
     public void onKeyboard(KeyboardEvent event) {
@@ -88,9 +87,6 @@ public class YourListener implements Listener {
 ### Mouse press tracking:
 
 ```java
-
-import ru.zwanter.clientinteractapi.data.version.MinecraftVersion;
-
 public class YourListener implements Listener {
     @EventHandler
     public void onMouse(MouseButtonEvent event) {
